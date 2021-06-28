@@ -1,14 +1,13 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatTextView;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeUtil;
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeUtil;
 
 public class AnsenEditText extends AppCompatEditText implements IAnsenShapeView{
     private ShapeAttribute shapeAttribute;

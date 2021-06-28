@@ -1,4 +1,4 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,14 +11,13 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeConstant;
-import com.ansen.shape.util.ShapeUtil;
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeConstant;
+import com.zalbert.shape.util.ShapeUtil;
 
 public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView {
     private ShapeAttribute attribute;

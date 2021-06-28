@@ -1,27 +1,25 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.view.View;
+import android.widget.LinearLayout;
 
-import androidx.appcompat.widget.AppCompatTextView;
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeUtil;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeUtil;
-
-public class AnsenView extends View implements IAnsenShapeView{
+public class AnsenLinearLayout extends LinearLayout implements IAnsenShapeView{
     private ShapeAttribute shapeAttribute;
 
-    public AnsenView(Context context) {
+    public AnsenLinearLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenView(Context context, AttributeSet attrs){
-        this(context, attrs,android.R.attr.textViewStyle);
+    public AnsenLinearLayout(Context context, AttributeSet attrs){
+        this(context, attrs,0);
     }
 
-    public AnsenView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AnsenLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
@@ -103,5 +101,11 @@ public class AnsenView extends View implements IAnsenShapeView{
         shapeAttribute.shape=shape;
     }
 
+    @Override
+    public void dispatchSetSelected(boolean selected) {
+        super.dispatchSetSelected(selected);
 
+        shapeAttribute.selected=selected;
+        resetBackground();
+    }
 }

@@ -1,28 +1,33 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeUtil;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class AnsenLinearLayout extends LinearLayout implements IAnsenShapeView{
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeUtil;
+
+/**
+ * @author Ansen
+ * @create time 2020/5/22
+ */
+public class AnsenConstraintLayout extends ConstraintLayout implements IAnsenShapeView{
     private ShapeAttribute shapeAttribute;
 
-    public AnsenLinearLayout(Context context) {
+    public AnsenConstraintLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenLinearLayout(Context context, AttributeSet attrs){
+    public AnsenConstraintLayout(Context context, AttributeSet attrs){
         this(context, attrs,0);
     }
 
-    public AnsenLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AnsenConstraintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
+        shapeAttribute= ShapeUtil.getShapeAttribute(context,attrs);
         ShapeUtil.setBackground(this,shapeAttribute);
     }
 
@@ -102,8 +107,8 @@ public class AnsenLinearLayout extends LinearLayout implements IAnsenShapeView{
     }
 
     @Override
-    public void dispatchSetSelected(boolean selected) {
-        super.dispatchSetSelected(selected);
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
 
         shapeAttribute.selected=selected;
         resetBackground();

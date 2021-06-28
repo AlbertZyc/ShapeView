@@ -1,33 +1,29 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.AppCompatButton;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeUtil;
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeUtil;
 
-/**
- * @author Ansen
- * @create time 2020/5/22
- */
-public class AnsenConstraintLayout extends ConstraintLayout implements IAnsenShapeView{
+public class AnsenButton extends AppCompatButton implements IAnsenShapeView{
     private ShapeAttribute shapeAttribute;
 
-    public AnsenConstraintLayout(Context context) {
+    public AnsenButton(Context context) {
         this(context,null);
     }
 
-    public AnsenConstraintLayout(Context context, AttributeSet attrs){
-        this(context, attrs,0);
+    public AnsenButton(Context context, AttributeSet attrs){
+        this(context, attrs,android.R.attr.buttonStyle);
     }
 
-    public AnsenConstraintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AnsenButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        shapeAttribute= ShapeUtil.getShapeAttribute(context,attrs);
+        shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
         ShapeUtil.setBackground(this,shapeAttribute);
     }
 
@@ -106,11 +102,4 @@ public class AnsenConstraintLayout extends ConstraintLayout implements IAnsenSha
         shapeAttribute.shape=shape;
     }
 
-    @Override
-    public void setSelected(boolean selected) {
-        super.setSelected(selected);
-
-        shapeAttribute.selected=selected;
-        resetBackground();
-    }
 }

@@ -1,25 +1,25 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeUtil;
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenRelativeLayout extends RelativeLayout implements IAnsenShapeView{
+public class AnsenFrameLayout extends FrameLayout implements IAnsenShapeView{
     private ShapeAttribute shapeAttribute;
 
-    public AnsenRelativeLayout(Context context) {
+    public AnsenFrameLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenRelativeLayout(Context context, AttributeSet attrs){
+    public AnsenFrameLayout(Context context, AttributeSet attrs){
         this(context, attrs,0);
     }
 
-    public AnsenRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AnsenFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);

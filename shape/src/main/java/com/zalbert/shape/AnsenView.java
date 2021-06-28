@@ -1,26 +1,25 @@
-package com.ansen.shape;
+package com.zalbert.shape;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.view.View;
 
-import androidx.appcompat.widget.AppCompatButton;
+import com.zalbert.shape.module.ShapeAttribute;
+import com.zalbert.shape.util.ShapeUtil;
 
-import com.ansen.shape.module.ShapeAttribute;
-import com.ansen.shape.util.ShapeUtil;
-
-public class AnsenButton extends AppCompatButton implements IAnsenShapeView{
+public class AnsenView extends View implements IAnsenShapeView{
     private ShapeAttribute shapeAttribute;
 
-    public AnsenButton(Context context) {
+    public AnsenView(Context context) {
         this(context,null);
     }
 
-    public AnsenButton(Context context, AttributeSet attrs){
-        this(context, attrs,android.R.attr.buttonStyle);
+    public AnsenView(Context context, AttributeSet attrs){
+        this(context, attrs,android.R.attr.textViewStyle);
     }
 
-    public AnsenButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public AnsenView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
@@ -101,5 +100,6 @@ public class AnsenButton extends AppCompatButton implements IAnsenShapeView{
     public void setShape(int shape) {
         shapeAttribute.shape=shape;
     }
+
 
 }
