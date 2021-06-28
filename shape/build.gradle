@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -22,6 +22,12 @@ android {
     }
 
 }
+ext {
+    PUBLISH_GROUP_ID = "com.zalbert.shape"        //项目包名
+    PUBLISH_ARTIFACT_ID = 'ShapeView'            //项目名
+    PUBLISH_VERSION = "1.0.0"                    //版本号
+}
+apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
