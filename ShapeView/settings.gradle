@@ -1,0 +1,3 @@
+include ':app'
+include ':shape'
+rootProject.name = "ShapeView"
