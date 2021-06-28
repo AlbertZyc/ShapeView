@@ -13,6 +13,7 @@ import android.view.View;
 import com.zalbert.shape.R;
 import com.zalbert.shape.module.ShapeAttribute;
 
+
 public class ShapeUtil{
     public static ShapeAttribute getShapeAttribute(Context context, AttributeSet attrs) {
         ShapeAttribute shapeAttribute = new ShapeAttribute();
@@ -42,6 +43,9 @@ public class ShapeUtil{
         shapeAttribute.strokeWidth = typedArray.getDimension(R.styleable.ShapeView_stroke_width, 0.0F);
         shapeAttribute.selectStrokeWidth = typedArray.getDimension(R.styleable.ShapeView_select_stroke_width, 0.0F);
         shapeAttribute.strokeDirection = typedArray.getInt(R.styleable.ShapeView_stroke_direction, 0);//默认为0 显示全边框
+
+        shapeAttribute.dashWidth = typedArray.getDimension(R.styleable.ShapeView_dash_width, 0.0F);
+        shapeAttribute.dashGap = typedArray.getDimension(R.styleable.ShapeView_dash_gap, 0.0F);
 
         shapeAttribute.cornersRadius = typedArray.getDimension(R.styleable.ShapeView_corners_radius, 0.0F);
         shapeAttribute.topLeftRadius = typedArray.getDimension(R.styleable.ShapeView_top_left_radius, 0.0F);
@@ -73,8 +77,9 @@ public class ShapeUtil{
         shapeAttribute.borderGradient = typedArray.getBoolean(R.styleable.ShapeView_border_gradient, false);
         shapeAttribute.textGradient = typedArray.getBoolean(R.styleable.ShapeView_text_gradient, false);
 
-//        Log.i("ansen","startColor:"+shapeAttribute.startColor+" selectStartColor"+shapeAttribute.selectStartColor);
+        shapeAttribute.selectedResetBackground = typedArray.getBoolean(R.styleable.ShapeView_selected_reset_background, true);
 
+//        Log.i("ansen","startColor:"+shapeAttribute.startColor+" selectStartColor"+shapeAttribute.selectStartColor+" selectedResetBackground:"+shapeAttribute.selectedResetBackground);
         typedArray.recycle();
         return shapeAttribute;
     }
@@ -104,7 +109,7 @@ public class ShapeUtil{
         } else {
             StateListDrawable sb = new StateListDrawable();
             
-            if (shapeAttribute.strokeDirection != 0) { // 标签效果不给支持
+            if (shapeAttribute.strokeDirection != 0) {//标签效果不给支持
                 Drawable strokeDrawable = getStrokeLayerDrawable(shapeAttribute);
                 sb.addState(new int[]{}, strokeDrawable);
             } else {
@@ -152,8 +157,14 @@ public class ShapeUtil{
         int strokeColor = shapeAttribute.getStrokeColor();
         float strokeWidth = shapeAttribute.getStrokeWidth();
 
+        float dashWidth=shapeAttribute.getDashWidth(),dashGap=shapeAttribute.getDashGap();
+
         if (strokeColor != 0 && strokeWidth != 0) {//设置边框
-            gradientDrawable.setStroke((int) strokeWidth, strokeColor);
+            if(dashWidth!=0&&dashGap!=0){
+                gradientDrawable.setStroke((int) strokeWidth, strokeColor,dashWidth,dashGap);
+            }else{
+                gradientDrawable.setStroke((int) strokeWidth, strokeColor);
+            }
         }
 
         gradientDrawable.setShape(shapeAttribute.shape);//设置形状(矩形、椭圆形、一条线、环形)

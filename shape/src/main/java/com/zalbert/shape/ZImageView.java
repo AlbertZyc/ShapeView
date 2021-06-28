@@ -16,23 +16,25 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+
 import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeConstant;
 import com.zalbert.shape.util.ShapeUtil;
+
 
 /**
  * 引用代码:https://github.com/ai2101039/YLCircleImageView
  * @author Ansen
  * @create time 2020/4/18
  */
-public class AnsenImageView extends AppCompatImageView {
+public class ZImageView extends AppCompatImageView {
     private Paint paint;//用于绘制Layer
     private Paint borderPaint;//用于绘制描边
 
     private ShapeAttribute attribute;
     private boolean circle;//是否有弧度，即是否需要绘制圆弧
 
-    public AnsenImageView(Context context, @Nullable AttributeSet attrs) {
+    public ZImageView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
         attribute= ShapeUtil.getShapeAttribute(context,attrs);
@@ -127,7 +129,7 @@ public class AnsenImageView extends AppCompatImageView {
             drawPath(canvas, rectF, borderPaint, i);
         }
 
-        if ((null != drawable && circle)) {
+        if ((null != drawable && circle &&drawable.getIntrinsicWidth()>0&&drawable.getIntrinsicHeight()>0)) {
             RectF rectF = new RectF(paddingLeft, paddingTop, vw - paddingRight, vh - paddingBottom);
             //  矩形需要缩小的值
             float i = attribute.getStrokeWidth() + attribute.strokeSpace;
@@ -269,6 +271,7 @@ public class AnsenImageView extends AppCompatImageView {
     private Bitmap drawableToBitmap(Drawable drawable) {
         int w = drawable.getIntrinsicWidth();
         int h = drawable.getIntrinsicHeight();
+
         Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
         Bitmap bitmap = Bitmap.createBitmap(w, h, config);
         //注意，下面三行代码要用到，否则在View或者SurfaceView里的canvas.drawBitmap会看不到图

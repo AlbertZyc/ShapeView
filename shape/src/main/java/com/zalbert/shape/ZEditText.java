@@ -4,26 +4,27 @@ import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
-import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
 
 import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenButton extends AppCompatButton implements IAnsenShapeView{
+
+public class ZEditText extends AppCompatEditText implements IZShapeView {
     private ShapeAttribute shapeAttribute;
 
-    public AnsenButton(Context context) {
+    public ZEditText(Context context) {
         this(context,null);
     }
 
-    public AnsenButton(Context context, AttributeSet attrs){
-        this(context, attrs,android.R.attr.buttonStyle);
+    public ZEditText(Context context, AttributeSet attrs){
+        this(context, attrs,android.R.attr.editTextStyle);
     }
 
-    public AnsenButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
+        shapeAttribute= ShapeUtil.getShapeAttribute(context,attrs);
         ShapeUtil.setBackground(this,shapeAttribute);
     }
 
@@ -102,4 +103,7 @@ public class AnsenButton extends AppCompatButton implements IAnsenShapeView{
         shapeAttribute.shape=shape;
     }
 
+    public ShapeAttribute getShape() {
+        return shapeAttribute;
+    }
 }

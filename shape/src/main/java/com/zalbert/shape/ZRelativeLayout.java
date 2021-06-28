@@ -8,18 +8,18 @@ import android.widget.RelativeLayout;
 import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenRelativeLayout extends RelativeLayout implements IAnsenShapeView{
+public class ZRelativeLayout extends RelativeLayout implements IZShapeView {
     private ShapeAttribute shapeAttribute;
 
-    public AnsenRelativeLayout(Context context) {
+    public ZRelativeLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenRelativeLayout(Context context, AttributeSet attrs){
+    public ZRelativeLayout(Context context, AttributeSet attrs){
         this(context, attrs,0);
     }
 
-    public AnsenRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
@@ -99,6 +99,10 @@ public class AnsenRelativeLayout extends RelativeLayout implements IAnsenShapeVi
     @Override
     public void setShape(int shape) {
         shapeAttribute.shape=shape;
+    }
+
+    public ShapeAttribute getShape() {
+        return shapeAttribute;
     }
 
     @Override

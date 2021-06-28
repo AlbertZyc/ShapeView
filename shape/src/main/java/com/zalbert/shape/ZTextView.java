@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
@@ -19,21 +18,21 @@ import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeConstant;
 import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView {
+public class ZTextView extends AppCompatTextView implements IZShapeView {
     private ShapeAttribute attribute;
 
     private LinearGradient shader;
     private Paint borderPaint;
 
-    public AnsenTextView(Context context) {
+    public ZTextView(Context context) {
         this(context, null);
     }
 
-    public AnsenTextView(Context context, AttributeSet attrs) {
+    public ZTextView(Context context, AttributeSet attrs) {
         this(context, attrs, android.R.attr.textViewStyle);
     }
 
-    public AnsenTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         attribute = ShapeUtil.getShapeAttribute(context, attrs);
@@ -43,9 +42,8 @@ public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView 
         }
 
         updateText();
-        updateTextSize();
-        updateTextColor();
         updateDrawable();
+        updateTextColor();
     }
 
     @Override
@@ -197,36 +195,6 @@ public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView 
         attribute.shape = shape;
     }
 
-
-    @Override
-    public void setSelected(boolean selected) {
-        setSelected(selected, false);
-    }
-
-    /**
-     * 如果需要更新背景调用这个方法
-     *
-    /**
-     * 这个方法弃用 直接调用View.setSelected
-     * @param selected
-     * @param updateBackground 是否需要更新背景
-     */
-    public void setSelected(boolean selected, boolean updateBackground) {
-        boolean change = selected != isSelected();
-    }
-
-    @Deprecated
-    public void setSelected(boolean selected,boolean updateBackground) {
-        super.setSelected(selected);
-    }
-
-
-        if (!change) {//没有发生过变化
-//            Log.i("ansen","选中状态没有发生过变化 不更新");
-            return;
-        }
-
-        if (updateBackground) {
     //view选中状态变更回调
     protected void dispatchSetSelected(boolean selected){
         super.dispatchSetSelected(selected);
@@ -234,26 +202,33 @@ public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView 
         if(selected==attribute.selected){//没有发生过变化 不需要更新
             return ;
         }
+        attribute.selected=selected;
+        setSelected();
+    }
 
-//        Log.i("ansen","dispatchSetSelected selected:"+selected);
-        if(attribute.selectStartColor!=0||attribute.selectCenterColor!=0
-                ||attribute.selectEndColor!=0||attribute.selectStrokeColor!=0
-            ||attribute.selectSolidColor!=0){
+    public void setSelected(boolean selected,boolean updateBackground){
+        attribute.selectedResetBackground=updateBackground;
+        super.setSelected(selected);
+    }
 
+    /**
+     * 如果需要更新背景调用这个方法
+     */
+    public void setSelected() {
+        if (attribute.selectedResetBackground) {
             resetBackground();
         }
 
-        attribute.selected = selected;
+        updateTextColor();
+        updateText();
+        updateDrawable();
+    }
 
+    private void updateTextColor(){
         int textColor = attribute.getTextColor();
         if (textColor != 0) {
             setTextColor(textColor);
         }
-
-        updateText();
-        updateTextColor();
-        updateTextSize();
-        updateDrawable();
     }
 
     public void updateText() {
@@ -262,26 +237,9 @@ public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView 
         }
     }
 
-
-    public void updateTextColor(){
-        int textColor=attribute.getTextColor();
-        if(textColor!=0){
-            setTextColor(textColor);
-        }
-    }
-
-    public void updateTextSize(){
-        int textSize=attribute.getTextSize();
-        if(textSize!=0){
-            setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
-        }
-    }
-
-
-
-    public void updateDrawable(){
-        Drawable drawable=attribute.getDrawable();
-        if(drawable!=null){
+    public void updateDrawable() {
+        Drawable drawable = attribute.getDrawable();
+        if (drawable != null) {
             // 这一步必须要做,否则不会显示.
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 
@@ -322,24 +280,11 @@ public class AnsenTextView extends AppCompatTextView implements IAnsenShapeView 
         attribute.selectDrawable = selectDrawable;
     }
 
-    /**
-     * @param size 单位是sp
-     */
-    public void setTextSize(int size){
-        attribute.textSize=spToPixel(getContext(),size);
+    public void setSelectedResetBackground(boolean selectedResetBackground) {
+        attribute.selectedResetBackground=selectedResetBackground;
     }
 
-    /**
-     * @param size 单位是sp
-     */
-    public void setSelectTextSize(int size){
-        attribute.selectTextSize=spToPixel(getContext(),size);
-    }
-
-    //将sp转换成pixel
-    private int spToPixel(Context context, float spValue) {
-        float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
-        int pixelValue=(int) (spValue * scaledDensity + 0.5f);
-        return pixelValue;
+    public ShapeAttribute getShape() {
+        return attribute;
     }
 }

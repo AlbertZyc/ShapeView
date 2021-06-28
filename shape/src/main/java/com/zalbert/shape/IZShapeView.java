@@ -2,11 +2,14 @@ package com.zalbert.shape;
 
 import android.graphics.drawable.GradientDrawable;
 
+import com.zalbert.shape.module.ShapeAttribute;
+
+
 /**
  * @author Ansen
  * @create time 2019-10-28
  */
-public interface IAnsenShapeView {
+public interface IZShapeView {
     /**
      * 动态设置属性之后，调用这个方法
      */
@@ -43,4 +46,6 @@ public interface IAnsenShapeView {
     void setBottomRightRadius(float bottomRightRadius);
 
     void setShape(int shape);
+
+    ShapeAttribute getShape();
 }

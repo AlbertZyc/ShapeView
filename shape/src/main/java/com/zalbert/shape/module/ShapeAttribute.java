@@ -39,6 +39,9 @@ public class ShapeAttribute {
     public float strokeWidth;//边框宽度
     public float strokeSpace;//描边与图片间距
 
+    public float dashWidth;//虚线边框宽度
+    public float dashGap;//虚线边框间隙
+
     public float selectStrokeWidth;//选中边框宽度
     public int strokeDirection;//那个方向需要边框 默认全部
 
@@ -65,6 +68,9 @@ public class ShapeAttribute {
 
     public boolean borderGradient=false;//边框渐变
     public boolean textGradient=false;//文字渐变
+
+    public boolean selectedResetBackground;//设置View选中状态的时候是否重绘背景
+
 
     public int scaleType;//图片才有的属性
 
@@ -131,6 +137,22 @@ public class ShapeAttribute {
             return selectTextColor;
         }
         return textColor;
+    }
+
+    public float getDashWidth() {
+        return dashWidth;
+    }
+
+    public void setDashWidth(float dashWidth) {
+        this.dashWidth = dashWidth;
+    }
+
+    public float getDashGap() {
+        return dashGap;
+    }
+
+    public void setDashGap(float dashGap) {
+        this.dashGap = dashGap;
     }
 
     public int getTextSize() {

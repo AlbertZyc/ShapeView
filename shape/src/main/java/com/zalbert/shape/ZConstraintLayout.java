@@ -3,26 +3,31 @@ package com.zalbert.shape;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.view.View;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenView extends View implements IAnsenShapeView{
+/**
+ * @author Ansen
+ * @create time 2020/5/22
+ */
+public class ZConstraintLayout extends ConstraintLayout implements IZShapeView {
     private ShapeAttribute shapeAttribute;
 
-    public AnsenView(Context context) {
+    public ZConstraintLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenView(Context context, AttributeSet attrs){
-        this(context, attrs,android.R.attr.textViewStyle);
+    public ZConstraintLayout(Context context, AttributeSet attrs){
+        this(context, attrs,0);
     }
 
-    public AnsenView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZConstraintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
+        shapeAttribute= ShapeUtil.getShapeAttribute(context,attrs);
         ShapeUtil.setBackground(this,shapeAttribute);
     }
 
@@ -101,5 +106,15 @@ public class AnsenView extends View implements IAnsenShapeView{
         shapeAttribute.shape=shape;
     }
 
+    @Override
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
 
+        shapeAttribute.selected=selected;
+        resetBackground();
+    }
+
+    public ShapeAttribute getShape() {
+        return shapeAttribute;
+    }
 }

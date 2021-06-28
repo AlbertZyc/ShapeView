@@ -15,19 +15,19 @@ import java.util.ArrayList;
  * @author Ansen
  * @create time 2020-03-20
  */
-public class AnsenPriorityLinearLayout extends AnsenLinearLayout {
+public class ZPriorityLinearLayout extends ZLinearLayout {
     private ArrayList<View> mTempMiniWidthChildList = new ArrayList<>();
     private ArrayList<View> mTempDisposableChildList = new ArrayList<>();
 
-    public AnsenPriorityLinearLayout(Context context) {
+    public ZPriorityLinearLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenPriorityLinearLayout(Context context, AttributeSet attrs) {
+    public ZPriorityLinearLayout(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public AnsenPriorityLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZPriorityLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

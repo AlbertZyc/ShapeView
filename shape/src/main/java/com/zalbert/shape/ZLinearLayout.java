@@ -3,23 +3,23 @@ package com.zalbert.shape;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenFrameLayout extends FrameLayout implements IAnsenShapeView{
+public class ZLinearLayout extends LinearLayout implements IZShapeView {
     private ShapeAttribute shapeAttribute;
 
-    public AnsenFrameLayout(Context context) {
+    public ZLinearLayout(Context context) {
         this(context,null);
     }
 
-    public AnsenFrameLayout(Context context, AttributeSet attrs){
+    public ZLinearLayout(Context context, AttributeSet attrs){
         this(context, attrs,0);
     }
 
-    public AnsenFrameLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZLinearLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
@@ -102,10 +102,14 @@ public class AnsenFrameLayout extends FrameLayout implements IAnsenShapeView{
     }
 
     @Override
-    public void setSelected(boolean selected) {
-        super.setSelected(selected);
+    public void dispatchSetSelected(boolean selected) {
+        super.dispatchSetSelected(selected);
 
         shapeAttribute.selected=selected;
         resetBackground();
+    }
+
+    public ShapeAttribute getShape() {
+        return shapeAttribute;
     }
 }

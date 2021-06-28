@@ -4,23 +4,23 @@ import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
-import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.zalbert.shape.module.ShapeAttribute;
 import com.zalbert.shape.util.ShapeUtil;
 
-public class AnsenEditText extends AppCompatEditText implements IAnsenShapeView{
+public class ZButton extends AppCompatButton implements IZShapeView {
     private ShapeAttribute shapeAttribute;
 
-    public AnsenEditText(Context context) {
+    public ZButton(Context context) {
         this(context,null);
     }
 
-    public AnsenEditText(Context context, AttributeSet attrs){
-        this(context, attrs,android.R.attr.editTextStyle);
+    public ZButton(Context context, AttributeSet attrs){
+        this(context, attrs,android.R.attr.buttonStyle);
     }
 
-    public AnsenEditText(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ZButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         shapeAttribute=ShapeUtil.getShapeAttribute(context,attrs);
@@ -102,4 +102,7 @@ public class AnsenEditText extends AppCompatEditText implements IAnsenShapeView{
         shapeAttribute.shape=shape;
     }
 
+    public ShapeAttribute getShape() {
+        return shapeAttribute;
+    }
 }
