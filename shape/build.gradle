@@ -1,5 +1,6 @@
-apply plugin: 'com.android.library'
-
+plugins{
+    id 'com.android.library'
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -23,9 +24,9 @@ android {
 
 }
 ext {
-    PUBLISH_GROUP_ID = "com.zalbert.shape"        //项目包名
+    PUBLISH_GROUP_ID = "io.github.albertzyc"        //项目包名
     PUBLISH_ARTIFACT_ID = 'ShapeView'            //项目名
-    PUBLISH_VERSION = "1.0.0"                    //版本号
+    PUBLISH_VERSION = "1.0.1"                    //版本号
 }
 apply from: "${rootProject.projectDir}/publish-mavencentral.gradle"
 
